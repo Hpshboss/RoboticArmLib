@@ -2,6 +2,7 @@ import serial
 import sys
 import os
 
+
 class RoboticArm:
     def __init__(self, com_port):
         self.comport = com_port
