@@ -47,6 +47,10 @@ class RoboticArm:
     def ungrip(self):
         self.robotic_arm.write("T5N0=2".encode() + os.linesep.encode())
 
+    #
+    # All move_to_XXX_XXX is from origin of initial coordinate
+    # All back_from_XXX_XXX is back to origin of initial coordinate
+    #
     def move_to_workpiece_table(self):
         for instruction in self.move_to_workpiece_table_instructions:
             self.robotic_arm.write(instruction.encode() + os.linesep.encode())
