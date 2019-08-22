@@ -16,10 +16,46 @@ class RoboticArm:
         self.machine_running = False  # True means machine is running
         self.machine_door = True  # True machine means door is open
         self.AGV_arrive = AGV_arrive
-        self.instructions1 = ()
-        self.instructions2 = ()
-        self.instructions3 = ()
-        self.instructions4 = ()
+        self.instructions1 = ("5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA")
+        self.instructions2 = ("5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA")
+        self.instructions3 = ("5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA")
+        self.instructions4 = ("5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA",
+                              "5MA")
 
     def G(self, machine_equipment):
         # AGV arrives at machine equipment 1
@@ -37,13 +73,13 @@ class RoboticArm:
             # wait door open
             while 1:
                 if self.machine_door == 1:
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
+                    for instruction in self.instructions1:
+                        self.robotic_arm.write(instruction.encode() + os.linesep.encode())
+                        while True:
+                            message = self.robotic_arm.readline(50)
+                            print(message)
+                            if message.find("Sync done".encode()) != -1:
+                                break
                     break
 
         # AGV arrives at machine equipment 3
@@ -51,21 +87,22 @@ class RoboticArm:
             # wait door open
             while 1:
                 if self.machine_door == 1:
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
-                    self.robotic_arm.write("".encode() + os.linesep.encode())
+                    for instruction in self.instructions1:
+                        self.robotic_arm.write(instruction.encode() + os.linesep.encode())
+                        while True:
+                            message = self.robotic_arm.readline(50)
+                            print(message)
+                            if message.find("Sync done".encode()) != -1:
+                                break
                     break
 
         # AGV arrives at machine equipment 4
         if machine_equipment == 4:
-            self.robotic_arm.write("".encode() + os.linesep.encode())
-            self.robotic_arm.write("".encode() + os.linesep.encode())
-            self.robotic_arm.write("".encode() + os.linesep.encode())
-            self.robotic_arm.write("".encode() + os.linesep.encode())
-            self.robotic_arm.write("".encode() + os.linesep.encode())
-            self.robotic_arm.write("".encode() + os.linesep.encode())
-            self.robotic_arm.write("".encode() + os.linesep.encode())
+            if self.machine_door == 1:
+                for instruction in self.instructions1:
+                    self.robotic_arm.write(instruction.encode() + os.linesep.encode())
+                    while True:
+                        message = self.robotic_arm.readline(50)
+                        print(message)
+                        if message.find("Sync done".encode()) != -1:
+                            break
