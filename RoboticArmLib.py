@@ -42,10 +42,12 @@ class RoboticArm:
                                                 "5MA")
 
     def grip(self):
-        self.robotic_arm.write("T5N0=3".encode() + os.linesep.encode())
+        self.robotic_arm.write("T5N0=2".encode() + os.linesep.encode())
+        self.robotic_arm.write("WT 100".encode() + os.linesep.encode())
 
     def ungrip(self):
-        self.robotic_arm.write("T5N0=2".encode() + os.linesep.encode())
+        self.robotic_arm.write("T5N0=3".encode() + os.linesep.encode())
+        self.robotic_arm.write("WT 100".encode() + os.linesep.encode())
 
     #
     # All move_to_XXX_XXX is from origin of initial coordinate
