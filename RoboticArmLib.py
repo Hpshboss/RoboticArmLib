@@ -1,7 +1,7 @@
 import serial
 import sys
 import os
-
+import time
 
 class RoboticArm:
     def __init__(self, com_port):
@@ -60,7 +60,8 @@ class RoboticArm:
             print(message)
             if message.find("Ok".encode()) != -1:
                 break
-        self.robotic_arm.write("WT 100".encode() + os.linesep.encode())
+        time.sleep(1)
+        # self.robotic_arm.write("WT 100".encode() + os.linesep.encode())
 
     def ungrip(self):
         self.robotic_arm.write("T5N0=3".encode() + os.linesep.encode())
@@ -69,7 +70,8 @@ class RoboticArm:
             print(message)
             if message.find("Ok".encode()) != -1:
                 break
-        self.robotic_arm.write("WT 100".encode() + os.linesep.encode())
+        time.sleep(1)
+        # self.robotic_arm.write("WT 100".encode() + os.linesep.encode())
 
     #
     # All move_to_XXX_XXX is from origin of initial coordinate
