@@ -55,10 +55,20 @@ class RoboticArm:
 
     def grip(self):
         self.robotic_arm.write("T5N0=2".encode() + os.linesep.encode())
+        while True:
+            message = self.robotic_arm.readline(50)
+            print(message)
+            if message.find("Ok".encode()) != -1:
+                break
         self.robotic_arm.write("WT 100".encode() + os.linesep.encode())
 
     def ungrip(self):
         self.robotic_arm.write("T5N0=3".encode() + os.linesep.encode())
+        while True:
+            message = self.robotic_arm.readline(50)
+            print(message)
+            if message.find("Ok".encode()) != -1:
+                break
         self.robotic_arm.write("WT 100".encode() + os.linesep.encode())
 
     #
