@@ -9,7 +9,7 @@ class RoboticArm:
         self.comport = com_port
         self.braudrate = 9600
 
-        # Initialize connection with
+        # Initialize connection with robotic arm
         self.robotic_arm = serial.Serial(self.comport, self.braudrate, xonxoff=True, timeout=0.25)
 
         # Set position of every point in process
