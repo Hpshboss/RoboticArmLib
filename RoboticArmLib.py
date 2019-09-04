@@ -13,8 +13,8 @@ class RoboticArm:
         self.robotic_arm = serial.Serial(self.comport, self.braudrate, xonxoff=True, timeout=0.25)
 
         # Set speed and acceleration of robotic arm
-        self.spd = 200
-        self.acl = 400
+        self.spd = 100
+        self.acl = 200
 
         # Set position of every point in process
         # For every machine
@@ -69,36 +69,40 @@ class RoboticArm:
                                                 self.move + self.d,
                                                 self.move + self.c)
 
-    def speed(self, spd, acl=400):
-        # Change value of speed and acceleration
-        self.spd = spd
-        self.acl = acl
+    # High, middle, and low speed and acceleration are (200, 400), (100, 200), and (50, 100) respectively
+    def speed(self, spd=100, acl=200):
+        if (spd == 200 and acl == 400) or (spd == 100 and acl == 200) or (spd == 50 and acl == 100):
+            # Change value of speed and acceleration
+            self.spd = spd
+            self.acl = acl
 
-        # Transfer value of acceleration to robotic arm
-        self.robotic_arm.write("PR2=".encode() + str(self.acl).encode() + os.linesep.encode())
+            # Transfer value of acceleration to robotic arm
+            self.robotic_arm.write("PR2=".encode() + str(self.acl).encode() + os.linesep.encode())
 
-        # Wait robotic arm transfers back message("Ok")
-        while True:
-            # Read message of robotic arm
-            message = self.robotic_arm.readline(50)
-            print(message)
-            # Make sure whether the message is "Ok"
-            if message.find("Ok".encode()) != -1:
-                # Break out loop and stop reading
-                break
+            # Wait robotic arm transfers back message("Ok")
+            while True:
+                # Read message of robotic arm
+                message = self.robotic_arm.readline(50)
+                print(message)
+                # Make sure whether the message is "Ok"
+                if message.find("Ok".encode()) != -1:
+                    # Break out loop and stop reading
+                    break
 
-        # Transfer value of speed to robotic arm
-        self.robotic_arm.write("PR3=".encode() + str(self.spd).encode() + os.linesep.encode())
+            # Transfer value of speed to robotic arm
+            self.robotic_arm.write("PR3=".encode() + str(self.spd).encode() + os.linesep.encode())
 
-        # Wait robotic arm transfers back message("Ok")
-        while True:
-            # Read message of robotic arm
-            message = self.robotic_arm.readline(50)
-            print(message)
-            # Make sure whether the message is "Ok"
-            if message.find("Ok".encode()) != -1:
-                # Break out loop and stop reading
-                break
+            # Wait robotic arm transfers back message("Ok")
+            while True:
+                # Read message of robotic arm
+                message = self.robotic_arm.readline(50)
+                print(message)
+                # Make sure whether the message is "Ok"
+                if message.find("Ok".encode()) != -1:
+                    # Break out loop and stop reading
+                    break
+        else:
+            print("Please refer to regulation")
 
     def grip(self):
         # Transfer grip instruction
