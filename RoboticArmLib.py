@@ -71,6 +71,7 @@ class RoboticArm:
 
     # High, middle, and low speed and acceleration are (200, 400), (100, 200), and (50, 100) respectively
     def speed(self, spd=100, acl=200):
+        # Make sure change accords with regulation
         if (spd == 200 and acl == 400) or (spd == 100 and acl == 200) or (spd == 50 and acl == 100):
             # Change value of speed and acceleration
             self.spd = spd
@@ -305,17 +306,22 @@ class RoboticArm:
                     break
 
 
-if __name__ == "__main__":
-    Jimmy = RoboticArm("COM8")
-
-    Jimmy.move_to_workpiece_table()
-
-    Jimmy.grip()
-
-    Jimmy.back_from_workpiece_table()
-
-    Jimmy.move_to_machine2()
-
-    Jimmy.ungrip()
-
-    Jimmy.back_from_machine2()
+# # # # # # # Example # # # # # # #
+# if __name__ == "__main__":
+#     Jimmy = RoboticArm("COM8")
+#
+#     Jimmy.speed(200, 400)
+#
+#     Jimmy.move_to_workpiece_table()
+#
+#     Jimmy.grip()
+#
+#     Jimmy.back_from_workpiece_table()
+#
+#     Jimmy.speed(100, 200)
+#
+#     Jimmy.move_to_machine2()
+#
+#     Jimmy.ungrip()
+#
+#     Jimmy.back_from_machine2()
