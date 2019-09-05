@@ -125,7 +125,7 @@ class RoboticArm:
 
     def ungrip(self):
         # Transfer ungrip instruction
-        self.robotic_arm.write("T5N0=3".encode() + os.linesep.encode())
+        self.robotic_arm.write("T5N0=1".encode() + os.linesep.encode())
 
         # Wait robotic arm transfers back message("ok")
         while True:
