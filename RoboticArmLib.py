@@ -306,22 +306,13 @@ class RoboticArm:
                     break
 
 
-# # # # # # # Example # # # # # # #
 # if __name__ == "__main__":
 #     Jimmy = RoboticArm("COM8")
 #
-#     Jimmy.speed(200, 400)
+#     Jimmy.move_to_machine2()
+#
+#     Jimmy.back_from_machine2()
 #
 #     Jimmy.move_to_workpiece_table()
 #
-#     Jimmy.grip()
-#
 #     Jimmy.back_from_workpiece_table()
-#
-#     Jimmy.speed(100, 200)
-#
-#     Jimmy.move_to_machine2()
-#
-#     Jimmy.ungrip()
-#
-#     Jimmy.back_from_machine2()
