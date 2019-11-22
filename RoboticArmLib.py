@@ -141,6 +141,75 @@ class RoboticArm:
         time.sleep(1)
         # self.robotic_arm.write("WT 100".encode() + os.linesep.encode())
 
+    def boot_pump(self):
+        # Transfer boot instruction
+        self.robotic_arm.write("set p1".encode() + os.linesep.encode())
+
+        # Wait robotic arm transfers back message("ok")
+        while True:
+            # Read message of robotic arm
+            message = self.robotic_arm.readline(50)
+            print(message)
+            # Make sure whether the message is "ok"
+            if message.find("Ok".encode()) != -1:
+                # Break out loop and stop reading
+                break
+
+    def suck(self):
+        # Transfer suck instruction
+        self.robotic_arm.write("set p2".encode() + os.linesep.encode())
+
+        # Wait robotic arm transfers back message("ok")
+        while True:
+            # Read message of robotic arm
+            message = self.robotic_arm.readline(50)
+            print(message)
+            # Make sure whether the message is "ok"
+            if message.find("Ok".encode()) != -1:
+                # Break out loop and stop reading
+                break
+
+    def unsuck(self):
+        # Transfer unsuck instruction
+        self.robotic_arm.write("clr p2".encode() + os.linesep.encode())
+
+        # Wait robotic arm transfers back message("ok")
+        while True:
+            # Read message of robotic arm
+            message = self.robotic_arm.readline(50)
+            print(message)
+            # Make sure whether the message is "ok"
+            if message.find("Ok".encode()) != -1:
+                # Break out loop and stop reading
+                break
+
+    def shut_down_pump(self):
+        # Transfer unsuck instruction
+        self.robotic_arm.write("clr p2".encode() + os.linesep.encode())
+
+        # Wait robotic arm transfers back message("ok")
+        while True:
+            # Read message of robotic arm
+            message = self.robotic_arm.readline(50)
+            print(message)
+            # Make sure whether the message is "ok"
+            if message.find("Ok".encode()) != -1:
+                # Break out loop and stop reading
+                break
+
+        # Transfer unsuck instruction
+        self.robotic_arm.write("clr p1".encode() + os.linesep.encode())
+
+        # Wait robotic arm transfers back message("ok")
+        while True:
+            # Read message of robotic arm
+            message = self.robotic_arm.readline(50)
+            print(message)
+            # Make sure whether the message is "ok"
+            if message.find("Ok".encode()) != -1:
+                # Break out loop and stop reading
+                break
+
     #
     # All move_to_XXX is from origin of initial coordinate
     # All back_from_XXX is back to origin of initial coordinate
